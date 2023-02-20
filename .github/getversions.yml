@@ -9,3 +9,4 @@ jobs:
           import platform
           print (platform.processor())
           print( 2 + 3)
+        shell: python
