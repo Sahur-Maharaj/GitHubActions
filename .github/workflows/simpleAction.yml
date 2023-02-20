@@ -6,7 +6,7 @@ jobs:
     steps:
       - name: echo a string
         run: echo "HELLO WORLD FROM GITHUB"
-      - name: multilineScript
-        run: |
-          node -v
-          npm -v 
+      # - name: multilineScript
+      #   run: |
+      #     node -v
+      #     npm -v 
