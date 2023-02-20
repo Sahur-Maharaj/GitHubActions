@@ -1,0 +1,11 @@
+name: run python cmds
+on: [push]
+jobs:
+  run-shell-cmds:
+    runs-on: ubuntu-latest
+    steps:
+      - name: python command
+        run: |
+          import platform
+          print (platform.processor())
+          print( 2 + 3)
