@@ -8,7 +8,7 @@ jobs:
       - name: lsfs
         run: |
           pwd
-          ls
+          ls -a
       - name: simple js Action
         id: greet
         uses: actions/hello-world-javascript-action@v1
