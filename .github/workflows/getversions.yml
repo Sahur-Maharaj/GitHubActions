@@ -8,5 +8,5 @@ jobs:
         run: |
           import platform
           print (platform.processor())
-          print( 2 + 3)
+          print(f'The sum of 2 + 3 = { 2 + 3}')
         shell: python
