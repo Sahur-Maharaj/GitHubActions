@@ -1,11 +1,22 @@
 name: Actions workflow
 on: 
   push:
+    branches:
+      - "main"
   pull_request:
     types:
       - "closed"
       - "assigned"
       - "opened"
+      - "closed"
+      - "assigned"
+    branches:
+      - "main/*" # matches branch like main wild
+#  schedule:
+    # - cron: "* * * * *" # min hr day mon day https://crontab.guru/#
+  # repository_dispatch:
+    # send a post req to a url and use the requests name to trigger the repodisp action
+
 
 jobs:
   run-git-actions:

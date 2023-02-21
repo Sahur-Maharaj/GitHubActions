@@ -1,0 +1,14 @@
+name: envVars
+on: push
+env:
+  wf_env: avail to all jobs
+jobs:
+  losg-env:
+    runs-on: ubuntu-latest
+    env: 
+      job_env: Avail to job steps
+    steps:
+      - name: long envVars
+        run: |
+          echo "WF ENV: ${wf_env}"
+          echo "WF ENV: ${job_env}"
