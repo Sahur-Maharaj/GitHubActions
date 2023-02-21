@@ -7,6 +7,8 @@ jobs:
       - name: decrpytor
         run: |
           ls -a
+          cd ..
+          ls -a
           gpg --quiet --batch --yes --decrypt --passphrase="$PASSPHRASE" --output $HOME/secret.json Secretkey.txt
           ls -a
       - name: print file
