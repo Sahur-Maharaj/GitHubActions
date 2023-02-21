@@ -12,3 +12,4 @@ jobs:
         run: |
           echo "WF ENV: ${wf_env}"
           echo "WF ENV: ${job_env}"
+          
