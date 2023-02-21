@@ -1,0 +1,16 @@
+name: decrpytor
+on: push
+jobs:
+  decrypt:
+    runs-on: ubuntu-latest
+    steps:
+      - name: decrpytor
+        run: |
+          ls -a
+          gpg --quiet --batch --yes --decrypt --passphrase="$PASSPHRASE" --output $HOME/secret.json Secretkey.txt.gpg
+          ls -a
+      - name: print file
+        run: cat $HOME/secret.json
+        env:
+          passp: ${{secrets.PASSPHRASE}}
+
