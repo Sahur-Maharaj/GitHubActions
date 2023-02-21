@@ -1,5 +1,11 @@
 name: Actions workflow
-on: [push]
+on: 
+  push:
+  pull_request:
+    types:
+      - "closed"
+      - "assigned"
+      - "opened"
 
 jobs:
   run-git-actions:
