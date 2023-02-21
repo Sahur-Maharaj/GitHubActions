@@ -7,10 +7,10 @@ jobs:
       - name: decrpytor
         run: |
           ls -a
-          gpg --quiet --batch --yes --decrypt --passphrase="$PASSPHRASE" --output $HOME/secret.json Secretkey.txt.gpg
+          gpg --quiet --batch --yes --decrypt --passphrase="$PASSPHRASE" --output $HOME/secret.json Secretkey.txt
           ls -a
       - name: print file
-        run: cat $HOME/secret.json
+        run: cat $HOME/secret.txt
         env:
           passp: ${{secrets.PASSPHRASE}}
 
