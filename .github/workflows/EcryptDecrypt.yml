@@ -7,8 +7,6 @@ jobs:
       - name: decrpytor
         run: |
           ls -a
-          cd ..
-          ls -a
           gpg --quiet --batch --yes --decrypt --passphrase="$PASSPHRASE" --output $HOME/secret.json Secretkey.txt
           ls -a
       - name: print file
@@ -16,3 +14,50 @@ jobs:
         env:
           passp: ${{secrets.PASSPHRASE}}
 
+
+# the expressions can contail littrals and opperators {{$}} Examples
+env:
+  myNull: ${{ null }}
+  myBoolean: ${{ false }}
+  myIntegerNumber: ${{ 711 }}
+  myFloatNumber: ${{ -9.2 }}
+  myHexNumber: ${{ 0xff }}
+  myExponentialNumber: ${{ -2.99e-2 }}
+  myString: Mona the Octocat
+  myStringInBraces: ${{ 'It''s open source!' }}
+
+name: build
+on: push
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - id: set-matrix
+        run: echo "matrix={\"include\":[{\"project\":\"foo\",\"config\":\"Debug\"},{\"project\":\"bar\",\"config\":\"Release\"}]}" >> $GITHUB_OUTPUT
+  job2:
+    needs: job1
+    runs-on: ubuntu-latest
+    strategy:
+      matrix: ${{ fromJSON(needs.job1.outputs.matrix) }}
+    steps:
+      - run: build
+
+name: print
+on: push
+env:
+  continue: true
+  time: 3
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - continue-on-error: ${{ fromJSON(env.continue) }}
+        timeout-minutes: ${{ fromJSON(env.time) }}
+        run: echo 
+          - name: Failing step
+    id: demo
+    run: exit 1
+  - name: The demo step has failed
+    if: ${{ failure() && steps.demo.conclusion == 'failure' }}
